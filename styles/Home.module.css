@@ -1,0 +1,118 @@
+@font-face {
+  font-family: "ColfaxAI";
+  src: url(https://cdn.openai.com/API/fonts/ColfaxAIRegular.woff2)
+      format("woff2"),
+    url(https://cdn.openai.com/API/fonts/ColfaxAIRegular.woff) format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "ColfaxAI";
+  src: url(https://cdn.openai.com/API/fonts/ColfaxAIBold.woff2) format("woff2"),
+    url(https://cdn.openai.com/API/fonts/ColfaxAIBold.woff) format("woff");
+  font-weight: bold;
+  font-style: normal;
+}
+
+
+.main {
+  --primary-color: #10a37f;
+  --width: 600px;
+  display: flex;
+  width: 100%;
+  margin-bottom: 60px;
+  flex-direction: column;
+  align-items: center;
+  padding-bottom: 60px;
+}
+
+.main,
+.main textarea,
+.main ::-webkit-inner-spin-button {
+  font-size: 16px;
+  line-height: 24px;
+  color: #353740;
+  font-family: "ColfaxAI", Helvetica, sans-serif;
+}
+
+.main .icon {
+  width: 34px;
+}
+.main h3 {
+  font-size: 32px;
+  line-height: 40px;
+  font-weight: bold;
+  color: #202123;
+  margin: 16px 0;
+}
+.main form {
+  display: flex;
+  flex-direction: column;
+  max-width: var(--width);
+  width: 100%;
+}
+.main textarea[type="text"],
+.main input[type="text"] {
+  padding: 12px 16px;
+  border: 1px solid var(--primary-color);
+  border-radius: 4px;
+  margin-bottom: 24px;
+  outline-color: var(--primary-color);
+}
+.main ::placeholder {
+  color: #8e8ea0;
+  opacity: 1;
+}
+.main input[type="submit"] {
+  padding: 12px 0;
+  color: #fff;
+  background-color: var(--primary-color);
+  border: none;
+  border-radius: 4px;
+  text-align: center;
+  cursor: pointer;
+}
+.main .resultContainer {
+  width: var(--width);
+  transition: all 0.3s ease;
+}
+
+.main .typewriter {
+  border: 1px solid var(--primary-color);
+  border-radius: 4px;
+  padding: 12px 16px;
+  margin-top: 40px;
+}
+
+.main progress {
+  margin-top: 40px;
+  width: 100%;
+}
+
+.github {
+  margin-bottom: 16px;
+}
+
+.size {
+  font-size: 12px;
+  line-height: 16px;
+  color: #8e8ea0;
+  width: 100%;
+  text-align: right;
+  margin-bottom: 20px;
+}
+
+.links {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  max-width: var(--width);
+  font-size: 12px;
+}
+
+.partLabel {
+  font-size: 12px;
+  line-height: 16px;
+  color: #8e8ea0;
+  margin-bottom: 8px;
+}
