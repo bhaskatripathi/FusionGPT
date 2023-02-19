@@ -3,6 +3,7 @@ SplitterBot is a web application that allows users to split a large text into sm
 
 # Demo
 ![](https://github.com/bhaskatripathi/SplitterbotGPT/blob/main/splitterbotGPT.gif)
+https://splitterbot-gpt.vercel.app
 
 ## Usage
 Enter your text and request into the provided fields.
@@ -14,5 +15,5 @@ Your API key and request are stored in the browser's local storage, so there is 
 To use SplitterBot, you will need an OpenAI API key, which can be obtained at https://beta.openai.com/docs/api-reference/authentication.
 
 ## Deployment
-The SplitterBot application is deployed on Vercel at https://splitterbot-gpt.vercel.app
+The SplitterBot application is deployed on Vercel's Cloud platform at https://splitterbot-gpt.vercel.app
 
