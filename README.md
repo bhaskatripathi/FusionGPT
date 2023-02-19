@@ -1,6 +1,10 @@
 # SplitterBot
 SplitterBot is a web application that allows users to split a large text into smaller parts and send each part along with a request to the OpenAI API. The application is built with Next.js and deployed on Vercel.
 
+# Demo
+![](https://github.com/bhaskatripathi/SplitterbotGPT/blob/main/splitterbotGPT.gif)
+
+
 ## Requirements
 To use SplitterBot, you will need an OpenAI API key, which can be obtained at https://beta.openai.com/docs/api-reference/authentication.
 
