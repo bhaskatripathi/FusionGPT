@@ -1,11 +1,13 @@
 import { CHUNK_SIZE } from "@/common/chunk.constant";
 import { splitString } from "@/common/chunk.helper";
+import callGPT from "@/common/openai";
 import styles from "@/styles/Home.module.css";
 import { Analytics } from '@vercel/analytics/react';
 import Head from "next/head";
+import { Configuration, OpenAIApi } from "openai";
 import { useEffect, useState } from "react";
+import sequence from "../common/sequence";
 import Typewriter from "../components/TypeWriter";
-import sequence from "./api/sequence";
 
 export default function Home() {
   const [requestInput, setRequestInput] = useState("Summarize the text below");
@@ -19,7 +21,7 @@ export default function Home() {
   const [openaiAPIKey, setOpenAIAPIKey] = useState("");
 
   // This useEffect will run once when the component mounts
-  // It checks if the window and local storage exist, and if so, it
+  // It checks if thendow and local storage exist, and if so, it
   // checks if there is an API key stored in local storage. If so, it
   // sets the openAIAPIKey state to the value of the key. It also checks
   // if there is an API request stored in local storage, and if so, it
@@ -38,6 +40,7 @@ export default function Home() {
     }
   }, []);
 
+
   /**
    * This function calls the API server, which then calls the OpenAI API.
    * The OpenAI API uses the text sent as input and the request to generate a new text.
@@ -49,59 +52,12 @@ export default function Home() {
    * @returns 
    */
   async function processChunk(chunk, openaiAPIKey, requestInput) {
-    const response = await fetch("/api/generate", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        request: requestInput,
-        text: chunk,
-        openaiAPIKey,
-      }),
+
+    const configuration = new Configuration({
+      apiKey: openaiAPIKey,
     });
-
-    const data = await response.json();
-    if (response.status !== 200) {
-      throw (
-        data.error || new Error(`Request failed with status ${response.status}`)
-      );
-    }
-
-    return data.result;
-  }
-
-
-  /**
-   * This function is called when the user clicks the submit button.
-   * It calls the processChunk function for each chunk of the text.
-   * It then sets the result state to the generated text.
-   * @param {*} chunk 
-   * @param {*} openaiAPIKey 
-   * @param {*} requestInput 
-   * @returns 
-   */
-  async function processChunk(chunk, openaiAPIKey, requestInput) {
-    const response = await fetch("/api/generate", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        request: requestInput,
-        text: chunk,
-        openaiAPIKey,
-      }),
-    });
-
-    const data = await response.json();
-    if (response.status !== 200) {
-      throw (
-        data.error || new Error(`Request failed with status ${response.status}`)
-      );
-    }
-
-    return data.result;
+    const openai = new OpenAIApi(configuration);
+    return callGPT(chunk, requestInput, openai);
   }
 
   function scrollToBottom() {
@@ -128,7 +84,7 @@ export default function Home() {
         console.log(`Processing chunk: ${index} of ${chunks.length}`);
 
         return processChunk(chunk, openaiAPIKey, requestInput).then((res) => {
-          setResult((prevResult) => [...prevResult, ...res]);
+          setResult((prevResult) => [...prevResult, res]);
         }).finally(() => {
           return result;
         });
@@ -183,16 +139,15 @@ export default function Home() {
       <Analytics />
 
       <main className={styles.main}>
-        <h3>SplitterGPT</h3>
+        <h3>Fusion GPT</h3>
 
         <div className={styles.links}>
           <a href="https://beta.openai.com/account/api-keys">
-            Get Open AI API Key here.
+            Get your API Key here
           </a>
-          <a className={styles.github} href="https://www.bhaskartripathi.com">
-          www.bhaskartripathi.com  
+            <a className={styles.github} href="https://www.bhaskartripathi.com">
+            www.bhaskartripathi.com
           </a>
-          
         </div>
 
         <form onSubmit={onSubmit}>
@@ -215,11 +170,11 @@ export default function Home() {
             onChange={(e) => setRequestAndPersist(e.target.value)}
           />
           <label>The text you want to process</label>
-          <textarea
+          <textarea 
             type="text"
             name="text"
             rows="10"
-            placeholder={`Enter your text with no size limitation. It will be split into ${CHUNK_SIZE} character chunks and processed separately by OpenAI`}
+            placeholder={`Enter your text here, there is no size limitation for the input text. We will split your content into ${CHUNK_SIZE} characters chunks and send to OpenAI API. Each chunk will be processed distinctly. Finally, we will combine the response in different placeholders and load them incrementally for you.`}
             value={textInput}
             onChange={(e) => setTextAndChunks(e.target.value)}
           />
