@@ -60,7 +60,7 @@
   outline-color: var(--primary-color);
 }
 .main ::placeholder {
-  color: #8e8ea0;
+  color: #353537;
   opacity: 1;
 }
 .main input[type="submit"] {
