@@ -11,7 +11,7 @@ Click the "Send Requests" button to send each part of the text along with the re
 Your API key and request are stored in the browser's local storage, so there is no need to re-enter them if you revisit the page. Note that the API key is not stored on the server.
 
 ## Deployment
-The SplitterBot application is deployed on Vercel at https://splitterbotGPT.vercel.app/.
+The SplitterBot application is deployed on Vercel at https://fusiongpt.vercel.app/.
 
 
 ## Sequence Diagram
