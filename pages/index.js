@@ -133,7 +133,7 @@ export default function Home() {
   return (
     <div>
       <Head>
-        <title>SplitterGPT</title>
+        <title>Fusion GPT</title>
         <link rel="icon" href="https://4.bp.blogspot.com/_BLfzNtxLyuE/SxAcikWzFPI/AAAAAAAABpE/2ZloFaax_Tg/S220-s113/yellosketch.JPG" />
       </Head>
       <Analytics />
