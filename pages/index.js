@@ -153,7 +153,7 @@ export default function Home() {
         <form onSubmit={onSubmit}>
           <label>Enter your OpenAI API Key (We will not store it. The project is open source.)</label>
           <input
-            type="text"
+            type="password"
             name="openaiAPIKey"
             placeholder="Enter your OpenAI API Key"
             value={openaiAPIKey}
